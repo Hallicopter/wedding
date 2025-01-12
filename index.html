@@ -685,21 +685,23 @@
   <script>
     // Wedding countdown timer
     function updateCountdown() {
-      const weddingDate = new Date('2025-02-23T00:00:00-05:00');
-      const now = new Date('2025-01-05T17:07:26-05:00'); // Using provided current time
-      
-      const difference = weddingDate - now;
-      const days = Math.ceil(difference / (1000 * 60 * 60 * 24));
+      const weddingDate = new Date('2025-02-23T00:00:00+05:30'); // IST timezone
+      const now = new Date();
+      const diff = weddingDate - now;
+      const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
       
       const countdownElement = document.getElementById('countdown');
       if (countdownElement) {
-        countdownElement.textContent = `${days} Days to Go.`;
+        countdownElement.textContent = `${days} Days to Go`;
         countdownElement.style.display = 'block';
       }
     }
 
     // Run countdown immediately
     updateCountdown();
+
+    // Update countdown every second
+    setInterval(updateCountdown, 1000);
 
     // Also run when DOM is fully loaded
     document.addEventListener('DOMContentLoaded', updateCountdown);
